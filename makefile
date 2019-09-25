@@ -1,4 +1,4 @@
 main:
-	g++ -o program Combine.cpp
+	g++ -o combine Combine.cpp
 clean:
 	del Combine.o
