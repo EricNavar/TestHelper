@@ -6,15 +6,26 @@
 #include "TextFileHelper.h"
 using namespace std;
 
-struct TestHelper
+class TestHelper
 {
-	void(*user_test)(string);
+public:
 	TestHelper();
 	TestHelper(void(user_test)(string));
 	void SetTestFunction(void(user_test)(string));
-	void TestAllFiles(bool singleLine);
+	void TestAllFiles();
 	void TestFileByLine(string fileName);
 	void TestFile(string fileName);
 	vector<string> tokenize(const string infixExp) const;
 	bool verifyFiles() const;
+	void printConfig() const;
+private:
+	void(*user_test)(string);
+	string extractValue(string &line) const;
+	void readConfig();
+	string inputFolderName;
+	string inputFileExtension;
+	string answerFolderName;
+	string answerFileExtension;
+	bool singleLine;
+	bool filePrinting;
 };

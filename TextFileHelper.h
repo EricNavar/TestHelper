@@ -11,8 +11,9 @@ struct TextFileHelper
 {
 	vector<string> directory;
 	string folderName;
-	vector<string> readDirectory(bool extension);
+	vector<string> readDirectory(bool extension) const;
+	vector<string> readDirectory(string file, bool extention) const;
 	void printDirectory();
 	void combineFiles();
-	string removeExtention(string fileName);
+	string removeExtention(string fileName) const;
 };

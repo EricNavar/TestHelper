@@ -1,6 +1,6 @@
 #include "TextFileHelper.h"
 
-vector<string> TextFileHelper::readDirectory(bool extention)
+vector<string> TextFileHelper::readDirectory(bool extention) const
 {
 	string pattern(folderName);
 	pattern.append("\\*");
@@ -10,13 +10,20 @@ vector<string> TextFileHelper::readDirectory(bool extention)
 	if ((hFind = FindFirstFile(pattern.c_str(), &data)) != INVALID_HANDLE_VALUE) {
 		do {
 			string s = data.cFileName;
-			if (!extention) s = removeExtention(s);
+			if (!extention) 
+				s = removeExtention(s);
 			dir.push_back(s);
 		} while (FindNextFile(hFind, &data) != 0);
 		FindClose(hFind);
 	}
 	dir.erase(dir.begin(), dir.begin() + 2);
 	return dir;
+}
+
+vector<string> TextFileHelper::readDirectory(string file, bool extention) const
+{
+	string fileName = file;
+	return readDirectory(extention);
 }
 
 void TextFileHelper::printDirectory()
@@ -48,7 +55,7 @@ void TextFileHelper::combineFiles()
 	outfile.close();
 }
 
-string TextFileHelper::removeExtention(string fileName)
+string TextFileHelper::removeExtention(string fileName) const
 {
 	return fileName.substr(0, fileName.find("."));
 }

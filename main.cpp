@@ -3,20 +3,16 @@
 #include <windows.h>
 using namespace std;
 
-void verify();
-
 int main()
 {
-	cout << "1: printDirectory" << endl;
-	cout << "2: combineFiles" << endl;
-	cout << "3: verify files" << endl;
-	cout << "0: Exit" << endl;
 	bool extention;
 	string folderName;
 	int option = 1;
 	TextFileHelper t;
+	TestHelper TS;
 	while (option != 0)
 	{
+		printMenu();
 		cin >> option;
 		switch (option)
 		{
@@ -43,15 +39,21 @@ int main()
 			t.combineFiles();
 			break;
 		case 3:
-			verify();
+			TS.verifyFiles();
+			break;
+		case 4:
+			TS.printConfig();
 			break;
 		}
 	}
 	return 0;
 }
 
-void verify()
+void printMenu()
 {
-	TestHelper TS;
-	cout << TS.verifyFiles();
+	cout << "1: printDirectory" << endl;
+	cout << "2: combineFiles" << endl;
+	cout << "3: verify files" << endl;
+	cout << "4: print config" << endl;
+	cout << "0: Exit" << endl;
 }
