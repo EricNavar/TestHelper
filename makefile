@@ -1,6 +1,6 @@
 main:
-	g++ -o TestHelper Combine.cpp main.cpp
+	g++ -o program TestHelper.cpp TextFileHelper.cpp main.cpp
 combine:
-	g++ -o combine Combine.cpp main.cpp
+	g++ -o combine TextFileHelper.cpp main.cpp
 clean:
-	del Combine.o
+	del Combine.o TestHelper.o

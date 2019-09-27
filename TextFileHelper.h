@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 #include <string>
 #include <iostream>
@@ -10,7 +11,7 @@ struct TextFileHelper
 {
 	vector<string> directory;
 	string folderName;
-	void readDirectory(bool extension);
+	vector<string> readDirectory(bool extension);
 	void printDirectory();
 	void combineFiles();
 	string removeExtention(string fileName);

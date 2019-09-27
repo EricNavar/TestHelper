@@ -1,20 +1,22 @@
-#include "Combine.h"
+#include "TextFileHelper.h"
 
-void TextFileHelper::readDirectory(bool extention)
+vector<string> TextFileHelper::readDirectory(bool extention)
 {
 	string pattern(folderName);
 	pattern.append("\\*");
+	vector<string> dir;
 	WIN32_FIND_DATA data;
 	HANDLE hFind;
 	if ((hFind = FindFirstFile(pattern.c_str(), &data)) != INVALID_HANDLE_VALUE) {
 		do {
 			string s = data.cFileName;
-			if (extention) s = removeExtention(s);
-			directory.push_back(s);
+			if (!extention) s = removeExtention(s);
+			dir.push_back(s);
 		} while (FindNextFile(hFind, &data) != 0);
 		FindClose(hFind);
 	}
-	directory.erase(directory.begin(), directory.begin() + 2);
+	dir.erase(dir.begin(), dir.begin() + 2);
+	return dir;
 }
 
 void TextFileHelper::printDirectory()

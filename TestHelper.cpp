@@ -45,7 +45,6 @@ void TestHelper::TestFileByLine(string fileName)
 	}
 }
 
-
 void TestHelper::TestFile(string fileName)
 {
 	ifstream inputfile("testCaseInput/" + fileName + ".in");
@@ -55,4 +54,18 @@ void TestHelper::TestFile(string fileName)
 	user_test(line);
 	getline(answerfile, line);
 	cout << "answer: " << line << endl;
+}
+
+bool verifyFiles()
+{
+	TextHelper TH;
+	vector<string> inputFiles = TH.readDirectory("testCaseInput");
+	vector<string> answerFiles = TH.readDirectory("testCaseAnswers");
+	if (inputFiles.size() != answerFiles.size())
+		return false;
+	int size == inputFiles.size();
+	for (int i = 0; i < size; i++)
+		if (inputFiles[i] != answerFiles[i])
+			return false;
+	return true;
 }
