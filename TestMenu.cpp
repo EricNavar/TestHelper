@@ -1,9 +1,6 @@
-#include "TextFileHelper.h"
-#include "TestHelper.h"
-#include <windows.h>
-using namespace std;
+#include "TestMenu.h"
 
-int main()
+void TestMenu::showMenu() const
 {
 	bool extention;
 	string folderName;
@@ -46,10 +43,9 @@ int main()
 			break;
 		}
 	}
-	return 0;
 }
 
-void printMenu()
+void TestMenu::printOptions() const
 {
 	cout << "1: printDirectory" << endl;
 	cout << "2: combineFiles" << endl;
