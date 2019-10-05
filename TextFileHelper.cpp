@@ -1,6 +1,12 @@
 #include "TextFileHelper.h"
 
-vector<string> TextFileHelper::readDirectory(bool extention) const
+TextFileHelper::TextFileHelper()
+{
+	currentDirectory = getCurrentWorkingDir();
+	folderName = currentDirectory;
+}
+
+vector<string> TextFileHelper::readDirectory(bool extention = true) const
 {
 	string pattern(folderName);
 	pattern.append("\\*");
@@ -58,4 +64,17 @@ void TextFileHelper::combineFiles()
 string TextFileHelper::removeExtention(string fileName) const
 {
 	return fileName.substr(0, fileName.find("."));
+}
+
+void TextFileHelper::setFolderName(string fn)
+{
+	folderName = fn;
+}
+
+string TextFileHelper::getCurrentWorkingDir()
+{
+	char buff[FILENAME_MAX];
+	_getcwd(buff, FILENAME_MAX);
+	string current_working_dir(buff);
+	return current_working_dir;
 }

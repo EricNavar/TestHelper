@@ -18,6 +18,7 @@ public:
 	vector<string> tokenize(const string infixExp) const;
 	bool verifyFiles() const;
 	void printConfig() const;
+	void printOptions() const;
 private:
 	void(*user_test)(string);
 	string extractValue(string &line) const;

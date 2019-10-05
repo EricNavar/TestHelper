@@ -1,0 +1,6 @@
+input folder name:TestCaseInputs
+input file extension:.in
+answer folder name:TestCaseAnswer
+answer file extension:.ans
+single line:true
+file printing:false

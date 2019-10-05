@@ -43,7 +43,14 @@ void TestHelper::SetTestFunction(void(user_test)(string))
 
 void TestHelper::TestAllFiles()
 {	
-	ifstream inputFiles("fileNames.txt");
+	//std::stringstream ss;
+
+	ifstream inputFiles("Testing/fileNames.txt");
+	if (!inputFiles.is_open())
+	{
+		cout << "could not open fileNames.txt open" << endl;
+		return;
+	}
 	string fileName;
 	
 	while (getline(inputFiles, fileName))

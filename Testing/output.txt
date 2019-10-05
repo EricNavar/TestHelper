@@ -1,0 +1,58 @@
+varA varB + varC + varD +
+varA varB - varC - varD -
+varA varB + varC - varD +
+varA varB - varC - varD +
+varA varB - varC + varD -
+varA varB varC ^ ^
+varA varB * varC * varD *
+varA varB / varC / varD /
+varA varB * varC / varD *
+varA varB / varC / varD *
+varA varB / varC * varD /
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+varA varB + varC * varD +
+varA varB varC varD + * +
+varA varB + varC varD + *
+varA varB varC ^ * varD *
+varA varB ^ varC varD ^ *
+varA varB varC ^ / varD /
+varA varB ^ varC varD ^ /
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+Invalid infix expression
+varA varB ^ varC varD ^ ^
+varA varB ^ varC ^ varD ^
+varA varB ^ varC varD ^ ^
+varA varB + varC ^
+varA varB - varC ^
+varA varB * varC ^
+varA varB / varC ^
+varA varB varC / + varD +
+varA varB / varC varD / +
+varA varB varC / - varD -
+varA varB / varC varD / -
+varA varB varC * + varD +
+varA varB * varC varD * +
+varA varB varC * - varD -
+varA varB * varC varD * -
+apple banana + cat dog ^ * egg +
+apple banana cat dog ^ * + egg +
+apple banana + cat dog egg + ^ *
+Invalid infix expression
+Invalid infix expression
