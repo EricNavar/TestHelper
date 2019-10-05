@@ -72,9 +72,10 @@ void TestMenu::changeFolderNameMenu(TextFileHelper *t) const
 		}
 		else
 		{
-			cout << "invalid input";
+			cout << "invalid input" << endl;
 			cout << menu;
 		}
+		cin.clear();
 	}
 	t->setFolderName(folderName);
 	cout << "The current working directory has been set to " << folderName << endl;

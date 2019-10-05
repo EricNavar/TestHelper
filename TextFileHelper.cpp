@@ -2,13 +2,13 @@
 
 TextFileHelper::TextFileHelper()
 {
-	currentDirectory = getCurrentWorkingDir();
-	folderName = currentDirectory;
+	defaultDirectory = getCurrentWorkingDir();
+	currentDirectory = defaultDirectory;
 }
 
 vector<string> TextFileHelper::readDirectory(bool extention = true) const
 {
-	string pattern(folderName);
+	string pattern(currentDirectory);
 	pattern.append("\\*");
 	vector<string> dir;
 	WIN32_FIND_DATA data;
@@ -52,7 +52,7 @@ void TextFileHelper::combineFiles()
 	for (string s : directory)
 	{
 		string line;
-		infile.open(folderName + "/" + s);
+		infile.open(currentDirectory + "/" + s);
 		while (getline(infile, line, ' '))
 			outfile << line << " ";
 		outfile << endl;
@@ -68,7 +68,7 @@ string TextFileHelper::removeExtention(string fileName) const
 
 void TextFileHelper::setFolderName(string fn)
 {
-	folderName = fn;
+	currentDirectory = fn;
 }
 
 string TextFileHelper::getCurrentWorkingDir()

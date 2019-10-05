@@ -11,8 +11,8 @@ using namespace std;
 
 struct TextFileHelper
 {
-	string folderName;
 	string currentDirectory;
+	string defaultDirectory;
 	vector<string> directory;
 	TextFileHelper();
 	void setFolderName(string fn);
