@@ -6,7 +6,7 @@ TextFileHelper::TextFileHelper()
 	currentDirectory = defaultDirectory;
 }
 
-vector<string> TextFileHelper::readDirectory(bool extention = true) const
+vector<string> TextFileHelper::readDirectory(bool extension = true) const
 {
 	string pattern(currentDirectory);
 	pattern.append("\\*");
@@ -16,8 +16,8 @@ vector<string> TextFileHelper::readDirectory(bool extention = true) const
 	if ((hFind = FindFirstFile(pattern.c_str(), &data)) != INVALID_HANDLE_VALUE) {
 		do {
 			string s = data.cFileName;
-			if (!extention) 
-				s = removeExtention(s);
+			if (!extension) 
+				s = removeExtension(s);
 			dir.push_back(s);
 		} while (FindNextFile(hFind, &data) != 0);
 		FindClose(hFind);
@@ -32,12 +32,13 @@ vector<string> TextFileHelper::readDirectory(string file, bool extention) const
 	return readDirectory(extention);
 }
 
-void TextFileHelper::printDirectory()
+void TextFileHelper::printDirectory(string fileName)
 {
 	ofstream outfile;
-	outfile.open("file_names.txt");
+	outfile.open(fileName);
 	for (string s : directory)
 		outfile << s << endl;
+	cout << "finished printing" << endl;
 }
 
 void TextFileHelper::combineFiles()
@@ -61,7 +62,7 @@ void TextFileHelper::combineFiles()
 	outfile.close();
 }
 
-string TextFileHelper::removeExtention(string fileName) const
+string TextFileHelper::removeExtension(string fileName) const
 {
 	return fileName.substr(0, fileName.find("."));
 }
@@ -77,4 +78,18 @@ string TextFileHelper::getCurrentWorkingDir()
 	_getcwd(buff, FILENAME_MAX);
 	string current_working_dir(buff);
 	return current_working_dir;
+}
+
+void TextFileHelper::filterDirectory(string &extension)
+{
+	vector<string> newDirectory;
+	extension = '.' + extension;
+	int size = directory.size();
+	for (int i = 0; i < size; i++)
+	{
+		int index = directory[i].find(extension);
+		if (index != string::npos)
+			newDirectory.push_back(directory[i]);
+	}
+	directory = newDirectory;
 }

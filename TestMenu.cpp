@@ -2,8 +2,8 @@
 
 void TestMenu::showMenu() const
 {
-	bool extention;
-	string folderName;
+	bool extension;
+	string folderName, temp;
 	int option = 1;
 	TextFileHelper t;
 	TestHelper TS;
@@ -11,19 +11,20 @@ void TestMenu::showMenu() const
 	while (option != 0)
 	{
 		printOptions();
+		cout << "Enter an option: ";
 		cin >> option;
 		switch (option)
 		{
 		case 0:
 			break;
 		case 1:
-			if (t.directory.size() == 0) 
-				t.directory = t.readDirectory(extention);
-			t.printDirectory();
+			printDirectoryMenu(&t);
 			break;
 		case 2:
+			cout << "include extension? 1:no, 2:yes ";
+			cin >> extension;
 			if (t.directory.size() == 0)
-				t.directory = t.readDirectory(extention);
+				t.directory = t.readDirectory(extension);
 			t.combineFiles();
 			break;
 		case 3:
@@ -78,5 +79,33 @@ void TestMenu::changeFolderNameMenu(TextFileHelper *t) const
 		cin.clear();
 	}
 	t->setFolderName(folderName);
+	t->directory.clear();
 	cout << "The current working directory has been set to " << folderName << endl;
+}
+
+void TestMenu::printDirectoryMenu(TextFileHelper *t) const
+{
+	int option;
+	bool extension;
+	string temp;
+	cout << "include extension? 1:no, 2:yes ";
+	cin >> option;
+	extension = option - 1;
+	if (t->directory.size() == 0) 
+		t->directory = t->readDirectory(extension);
+	if (extension)
+	{
+		cout << "include only specific extension? 1:no, 2:yes ";
+		cin >> option;
+		if (option - 1)
+		{
+			cout << "Enter extension: .";
+			cin >> temp;
+			cout << "DEBUG: extension is " << temp;
+			t->filterDirectory(temp);
+		}
+	}
+	cout << "Enter name of file where names will be printed: ";
+	cin >> temp;
+	t->printDirectory(temp);
 }

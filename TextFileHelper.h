@@ -17,9 +17,10 @@ struct TextFileHelper
 	TextFileHelper();
 	void setFolderName(string fn);
 	vector<string> readDirectory(bool extension) const;
-	vector<string> readDirectory(string file, bool extention) const;
-	void printDirectory();
+	vector<string> readDirectory(string file, bool extension) const;
+	void printDirectory(string fileName);
 	void combineFiles();
-	string removeExtention(string fileName) const;
+	string removeExtension(string fileName) const;
 	string getCurrentWorkingDir();
+	void filterDirectory(string &extension);
 };

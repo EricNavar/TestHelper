@@ -10,4 +10,5 @@ public:
 	void showMenu() const;
 	void printOptions() const;
 	void changeFolderNameMenu(TextFileHelper *t) const;
+	void printDirectoryMenu(TextFileHelper *t) const;
 };
