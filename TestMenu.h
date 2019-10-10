@@ -11,4 +11,6 @@ public:
 	void printOptions() const;
 	void changeFolderNameMenu(TextFileHelper *t) const;
 	void printDirectoryMenu(TextFileHelper *t) const;
+	void numberListGeneratorMenu() const;
+	void generatorOptionsMenu(NumberListGenerator *nlg, vector<int> &v) const;
 };

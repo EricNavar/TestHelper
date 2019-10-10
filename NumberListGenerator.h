@@ -11,7 +11,6 @@ using namespace std;
 
 struct NumberListGenerator
 {
-    void menu();
     void createAscending(vector<int> &v);
     void createDescending(vector<int> &v);
     void createRandom(vector<int> &v);

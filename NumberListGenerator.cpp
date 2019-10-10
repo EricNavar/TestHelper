@@ -1,39 +1,5 @@
 #include "NumberListGenerator.h"
 
-void NumberListGenerator::menu()
-{
-    unsigned int option = 1;
-    string fileName;
-    string menu = "Which order should the list be created in?\n1) ascending\n2) descending\n3) random\n4)print list\n0) quit\n";
-    while (option)
-    {
-        cout << "enter number of values: ";
-        cin >> option;
-        vector<int> v(option);
-        cout << menu;
-        cin >> option;
-        switch (option)
-        {
-        case 0:
-            break;
-        case 1:
-            createAscending(v);
-            break;
-        case 2:
-            createDescending(v);
-            break;
-        case 3:
-            createRandom(v);
-            break;
-        case 4:
-            cout << "enter name of output file: ";
-            cin >> fileName;
-            printList(v, fileName);
-            break;
-        }
-    }
-}
-
 void NumberListGenerator::createAscending(vector<int> &v)
 {
     int n = v.size();

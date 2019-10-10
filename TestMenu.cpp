@@ -36,6 +36,9 @@ void TestMenu::showMenu() const
 		case 5:
 			changeFolderNameMenu(&t);
 			break;
+		case 6:
+			numberListGeneratorMenu();
+			break;
 		}
 	}
 }
@@ -47,6 +50,7 @@ void TestMenu::printOptions() const
 	cout << "3: verify files" << endl;
 	cout << "4: print config" << endl;
 	cout << "5: set folder name of workspace" << endl;
+	cout << "6: generate number list" << endl;
 	cout << "0: Exit" << endl;
 }
 
@@ -108,4 +112,62 @@ void TestMenu::printDirectoryMenu(TextFileHelper *t) const
 	cout << "Enter name of file where names will be printed: ";
 	cin >> temp;
 	t->printDirectory(temp);
+}
+
+void TestMenu::numberListGeneratorMenu() const
+{
+    NumberListGenerator nlg;
+	unsigned int option = 1;
+    string fileName;
+	vector<int> v;
+	while (option)
+	{
+		if (!v.size())
+		{
+			generatorOptionsMenu(&nlg, v);
+		}
+		else
+		{
+			cout << "1) generate numbers" << endl;
+			cout << "2) print list" << endl;
+			cout << "0) quit" << endl;
+			cin >> option;
+			if (option == 1)
+			{
+				generatorOptionsMenu(&nlg, v);
+			}
+			else if (option == 2)
+			{
+				cout << "Enter name of output file: ";
+				cin >> fileName;
+				nlg.printList(v,fileName);
+			}
+		}
+	}
+}
+
+void TestMenu::generatorOptionsMenu(NumberListGenerator *nlg, vector<int> &v) const
+{
+	cout << "enter number of values: ";
+	unsigned int option;
+	cin >> option;
+	cout << "Which order should the list be created in?\n1) ascending\n2) descending\n3) random\n";;
+	cin >> option;
+	switch (option)
+	{
+	case 0:
+		break;
+	case 1:
+		nlg->createAscending(v);
+		break;
+	case 2:
+		nlg->createDescending(v);
+		break;
+	case 3:
+		nlg->createRandom(v);
+		break;
+	default:
+		cout << "invalid input" << endl;
+		break;
+	}
 }
