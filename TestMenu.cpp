@@ -117,7 +117,7 @@ void TestMenu::printDirectoryMenu(TextFileHelper *t) const
 void TestMenu::numberListGeneratorMenu() const
 {
     NumberListGenerator nlg;
-	unsigned int option = 1;
+	int option = 1;
     string fileName;
 	vector<int> v;
 	while (option)
@@ -128,6 +128,7 @@ void TestMenu::numberListGeneratorMenu() const
 		}
 		else
 		{
+			cout << "Enter an option:" << endl;
 			cout << "1) generate numbers" << endl;
 			cout << "2) print list" << endl;
 			cout << "0) quit" << endl;
@@ -149,8 +150,9 @@ void TestMenu::numberListGeneratorMenu() const
 void TestMenu::generatorOptionsMenu(NumberListGenerator *nlg, vector<int> &v) const
 {
 	cout << "enter number of values: ";
-	unsigned int option;
+	int option;
 	cin >> option;
+	v.resize(option);
 	cout << "Which order should the list be created in?\n1) ascending\n2) descending\n3) random\n";;
 	cin >> option;
 	switch (option)
