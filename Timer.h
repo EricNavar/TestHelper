@@ -2,20 +2,32 @@
 #include <iostream>
 #include <chrono>
 
-template<typename T>
-class Timer
+//for free functions
+template<typename R, typename P>
+void timeFunction(P p, R(test)(P p))
 {
-public:
-    void timeFunction(T(user_test)()) const;
-};
+	const clock_t start = clock();
+	test(p);
+	const clock_t finish = clock();
+	std::cout << GET_VARIABLE_NAME(user_test) << " took " << finish - start << " milliseconds.\n";
+}
 
-template<typename T>
-void Timer<T>::timeFunction(T(user_test)()) const
+//for member methods
+template<typename R, typename P, typename C>
+void timeFunction(C c, P p, R(C:: * test)(P p))
 {
-    const clock_t start = clock();
-    user_test();
-    const clock_t finish = clock();
-    cout << "finish: " << finish << endl;
-    cout << "start: " << start << endl;
-    printf("%s took %f milliseconds.\n",GET_VARIABLE_NAME(user_test),finish-start);
+	const clock_t start = clock();
+	(c.*test)(p);
+	const clock_t finish = clock();
+	std::cout << GET_VARIABLE_NAME(user_test) << " took " << finish - start << " milliseconds.\n";
+}
+
+//for member methods with reference parameter
+template<typename R, typename P, typename C>
+void timeFunction(C c, P p, R(C:: * test)(P &p))
+{
+	const clock_t start = clock();
+	(c.*test)(p);
+	const clock_t finish = clock();
+	std::cout << GET_VARIABLE_NAME(user_test) << " took " << finish - start << " milliseconds.\n";
 }
