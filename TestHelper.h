@@ -4,6 +4,7 @@
 #include <fstream>
 #include <windows.h>
 #include "TextFileHelper.h"
+#include "Timer.h"
 using namespace std;
 
 class TestHelper
@@ -20,13 +21,13 @@ public:
 	void printConfig() const;
 	void printOptions() const;
 private:
+	string inputFolderName;
+	string inputFileExtension;
+	string answerFileExtension;
+	string answerFolderName;
+	bool singleLine;
+	bool filePrinting;
 	void(*user_test)(string);
 	string extractValue(string &line) const;
 	void readConfig();
-	string inputFolderName;
-	string inputFileExtension;
-	string answerFolderName;
-	string answerFileExtension;
-	bool singleLine;
-	bool filePrinting;
 };

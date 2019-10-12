@@ -1,4 +1,4 @@
-#include "AddMult.h"
+#include "AddMul.h"
 
 int AddMul::add(vector<int> numbers)
 {
@@ -14,16 +14,4 @@ int AddMul::multiply(vector<int> numbers)
     for (int i : numbers)
         result *= i;
     return result;
-}
-
-void addTest(string fileName)
-{
-    ifstream infile(filename);
-    vector<int> tokens;
-    int token;
-    while (cin >> token)
-        tokens.push_back(token);
-    for (int i: tokens)
-        cout << "token: " << i << endl;
-    cout << add(numbers);
 }

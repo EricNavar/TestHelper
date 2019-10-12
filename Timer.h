@@ -1,33 +1,40 @@
-#define GET_VARIABLE_NAME(Variable) (#Variable)
-#include <iostream>
 #include <chrono>
+
+//these functions calculate take in a function as a parameter, run it,
+//and return in milliseconds how long it took
+//type R is the return type
+//type P is the parameter type
+//type C is the class that the method belongs to, if applicable
 
 //for free functions
 template<typename R, typename P>
-void timeFunction(P p, R(test)(P p))
+clock_t timeFunction(P &p, R(test)(P p))
 {
-	const clock_t start = clock();
+	clock_t start, finish;
+	start = clock();
 	test(p);
-	const clock_t finish = clock();
-	std::cout << GET_VARIABLE_NAME(user_test) << " took " << finish - start << " milliseconds.\n";
+	finish = clock();
+	return finish - start;
 }
 
 //for member methods
 template<typename R, typename P, typename C>
-void timeFunction(C c, P p, R(C:: * test)(P p))
+clock_t timeFunction(C &c, P &p, R(C:: * test)(P p))
 {
-	const clock_t start = clock();
+	clock_t start, finish;
+	start = clock();
 	(c.*test)(p);
-	const clock_t finish = clock();
-	std::cout << GET_VARIABLE_NAME(user_test) << " took " << finish - start << " milliseconds.\n";
+	finish = clock();
+	return finish - start;
 }
 
-//for member methods with reference parameter
+//for member methods with reference parameter   ↓
 template<typename R, typename P, typename C>
-void timeFunction(C c, P p, R(C:: * test)(P &p))
+clock_t timeFunction(C &c, P &p, R(C:: *test)(P &p))
 {
-	const clock_t start = clock();
+	clock_t start, finish;
+	start = clock();
 	(c.*test)(p);
-	const clock_t finish = clock();
-	std::cout << GET_VARIABLE_NAME(user_test) << " took " << finish - start << " milliseconds.\n";
+	finish = clock();
+	return finish - start;
 }

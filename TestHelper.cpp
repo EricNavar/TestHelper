@@ -3,6 +3,7 @@
 TestHelper::TestHelper()
 {
 	readConfig();
+	user_test = nullptr;
 }
 
 void TestHelper::readConfig()
@@ -24,6 +25,7 @@ void TestHelper::readConfig()
 	getline(infile, line);
 }
 
+//helper function readConfig()
 string TestHelper::extractValue(string &line) const
 {
 	int i = line.find(":") + 1;
@@ -45,6 +47,9 @@ void TestHelper::TestAllFiles()
 {	
 	//std::stringstream ss;
 
+	if (user_test == nullptr)
+		throw runtime_error("user_test not set!");
+
 	ifstream inputFiles("Testing/fileNames.txt");
 	if (!inputFiles.is_open())
 	{
@@ -55,7 +60,7 @@ void TestHelper::TestAllFiles()
 	
 	while (getline(inputFiles, fileName))
 	{
-		cout << fileName << endl;
+		cout << "testing " << fileName << "..." << endl;
 		if (singleLine)
 			TestFileByLine(fileName);
 		else
@@ -65,17 +70,27 @@ void TestHelper::TestAllFiles()
 }
 
 //test each line individually because each test case is 1 line
+//reads each line from input file who names is passed in
+//the line is fed to the user test then executed and the time
+//to execute is taken
 void TestHelper::TestFileByLine(string fileName)
 {
-	ifstream inputfile(inputFolderName + "/" + fileName + inputFileExtension);
-	ifstream answerfile(answerFolderName + "/" + fileName + answerFileExtension);
+	string inputDirectory = inputFolderName + "/" + fileName + inputFileExtension;
+	string answerDirectory = answerFolderName + "/" + fileName + answerFileExtension;
+	ifstream inputfile(inputDirectory);
+	ifstream answerfile(answerDirectory);
+	if (!inputfile.is_open())
+		cout << inputDirectory << " is not open!" << endl;
+	if (!answerfile.is_open())
+		cout << answerDirectory << " is not open!" << endl;
 	string line;
-	while (std::getline(inputfile, line))
+	while (getline(inputfile, line))
 	{
 		cout << "mine:   ";
-		user_test(line);
+		auto time = timeFunction(line, user_test);
 		getline(answerfile, line);
 		cout << "answer: " << line << endl;
+		cout << "Time to execute: " << time << endl;
 	}
 }
 

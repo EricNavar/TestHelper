@@ -28,7 +28,10 @@ void TestMenu::showMenu() const
 			t.combineFiles();
 			break;
 		case 3:
-			TS.verifyFiles();
+			if (TS.verifyFiles())
+				cout << "input and output file names match" << endl;
+			else
+				cout << "input and output file names match" << endl;
 			break;
 		case 4:
 			TS.printConfig();
