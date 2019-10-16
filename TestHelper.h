@@ -5,6 +5,7 @@
 #include <windows.h>
 #include "TextFileHelper.h"
 #include "Timer.h"
+#include "TestMenu.h"
 using namespace std;
 
 class TestHelper

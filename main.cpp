@@ -1,6 +1,6 @@
 #include "AddMul.h"
-#include "TestMenu.h"
 #include "TestHelper.h"
+#include <sstream>
 using namespace std;
 
 void useTestHelper();
@@ -39,7 +39,6 @@ vector<int> tokenize(string input)
 
 int main()
 {
-	TestMenu tm;
-	tm.showMenu();
+	TestMenu tm(addTest);
 	return 0;
 }

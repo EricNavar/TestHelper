@@ -1,8 +1,14 @@
 #include "TestMenu.h"
 
-void TestMenu::showMenu() const
+TestMenu::TestMenu(void(*test)(string))
+{
+	showMenu(test);
+}
+
+void TestMenu::showMenu(void(*test)(string)) const
 {
 	bool extension;
+	TestHelper th(test);
 	string folderName, temp;
 	int option = 1;
 	TextFileHelper t;
@@ -42,6 +48,9 @@ void TestMenu::showMenu() const
 		case 6:
 			numberListGeneratorMenu();
 			break;
+		case 7:
+			th.TestAllFiles();
+			break;
 		}
 	}
 }
@@ -54,6 +63,7 @@ void TestMenu::printOptions() const
 	cout << "4: print config" << endl;
 	cout << "5: set folder name of workspace" << endl;
 	cout << "6: generate number list" << endl;
+	cout << "7: run test cases" << endl;
 	cout << "0: Exit" << endl;
 }
 
