@@ -8,7 +8,7 @@
 
 //for free functions
 template<typename R, typename P>
-clock_t timeFunction(P &p, R(test)(P p))
+clock_t timeFunction(P &p, R(test)(P &p))
 {
 	clock_t start, finish;
 	start = clock();
